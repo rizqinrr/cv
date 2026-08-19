@@ -1,0 +1,1 @@
+export const THEME_KEY = 'cv_theme'

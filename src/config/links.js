@@ -1,0 +1,80 @@
+import {
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaFacebook,
+  FaBriefcase,
+  FaWhatsapp,
+  FaTelegram,
+  FaDiscord,
+  FaGraduationCap,
+} from 'react-icons/fa'
+
+export const SITE = {
+  shareTitle: 'Profil & Links',
+  shareText: 'Kunjungi profil',
+  footerRights: 'All rights reserved.',
+}
+
+export const SOCIALS = [
+  {
+    label: 'GitHub',
+    icon: FaGithub,
+    href: '#',
+  },
+  {
+    label: 'Instagram',
+    icon: FaInstagram,
+    href: '#',
+  },
+  {
+    label: 'LinkedIn',
+    icon: FaLinkedin,
+    href: '#',
+  },
+  {
+    label: 'Facebook',
+    icon: FaFacebook,
+    href: '#',
+  },
+]
+
+export const COURSE = {
+  title: 'Nurman Course',
+  desc: 'Belajar & tingkatkan skill',
+  icon: FaGraduationCap,
+  href: '#',
+}
+
+export const MENU = [
+  {
+    label: 'Data Diri',
+    icon: 'person',
+    href: 'profile.html',
+  },
+  {
+    label: 'Portfolio',
+    icon: FaBriefcase,
+    href: '#',
+  },
+  {
+    label: 'Grup Ngomongin AI',
+    icon: FaWhatsapp,
+    href: '#',
+  },
+  {
+    label: 'Channel Ngomongin AI',
+    icon: FaWhatsapp,
+    href: '#',
+  },
+  {
+    label: 'Grup Telegram Ngomongin AI',
+    icon: FaTelegram,
+    href: '#',
+  },
+  {
+    label: 'Discord Ngomongin AI',
+    icon: FaDiscord,
+    href: '#',
+  },
+]

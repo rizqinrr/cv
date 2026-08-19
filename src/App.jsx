@@ -1,121 +1,183 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useState } from 'react'
+import { THEME_KEY } from './config/theme.js'
+import { PROFILE } from './config/profile.js'
+import { SITE, SOCIALS, COURSE, MENU } from './config/links.js'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem(THEME_KEY) || 'light',
+  )
+  const [toast, setToast] = useState('')
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem(THEME_KEY, theme)
+  }, [theme])
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 130)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (!toast) return
+    const t = setTimeout(() => setToast(''), 2400)
+    return () => clearTimeout(t)
+  }, [toast])
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    setToast(next === 'dark' ? 'Mode Gelap Diaktifkan' : 'Mode Terang Diaktifkan')
+  }
+
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setToast('Link profil berhasil disalin!')
+    } catch {
+      setToast('Gagal menyalin link')
+    }
+  }
+
+  const handleShare = async () => {
+    const shareData = {
+      title: `${PROFILE.name} - ${SITE.shareTitle}`,
+      text: `${SITE.shareText} ${PROFILE.name}`,
+      url: window.location.href,
+    }
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData)
+      } catch {
+        // dibatalkan user, abaikan
+      }
+    } else {
+      copyToClipboard(window.location.href)
+    }
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="container">
+      <header className="top-header">
+        <div className="top-actions">
+          <button
+            className="icon-btn"
+            onClick={toggleTheme}
+            aria-label="Ganti Mode Warna"
+          >
+            <span className="material-symbols-outlined">
+              {theme === 'dark' ? 'light_mode' : 'dark_mode'}
+            </span>
+          </button>
+          <button
+            className="icon-btn"
+            onClick={handleShare}
+            aria-label="Bagikan Profil"
+          >
+            <span className="material-symbols-outlined">share</span>
+          </button>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+      </header>
+
+      <div className={`top-capsule${scrolled ? ' show' : ''}`}>
+        <div className="capsule-avatar">
+          <img src={PROFILE.avatar} alt={PROFILE.name} />
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+        <div className="capsule-text">
+          <div className="capsule-name">{PROFILE.name}</div>
+          <div className="capsule-handle">{PROFILE.handle}</div>
+        </div>
+      </div>
+
+      <section className={`hero${scrolled ? ' collapsed' : ''}`}>
+        <div className="cover">
+          <img src={PROFILE.cover} alt="" className="cover-img" />
+          <div className="cover-overlay" />
+        </div>
+        <div className="avatar-ring">
+          <img src={PROFILE.avatar} alt={PROFILE.name} className="avatar-img" />
+          <div className="verified-badge">
+            <span className="material-symbols-outlined">check</span>
+          </div>
+        </div>
+        <h2 className="profile-name">{PROFILE.name}</h2>
+        <span className="profile-handle">{PROFILE.handle}</span>
+        <p className="profile-bio">{PROFILE.bio}</p>
       </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      <a className="course-card" href={COURSE.href}>
+        <div className="course-icon-box">
+          <COURSE.icon />
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+        <div className="course-text">
+          <div className="course-title">{COURSE.title}</div>
+          <div className="course-desc">{COURSE.desc}</div>
         </div>
-      </section>
+        <div className="course-arrow">
+          <span className="material-symbols-outlined">arrow_forward</span>
+        </div>
+      </a>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <nav className="menu">
+        {MENU.map((row) => (
+          <a key={row.label} className="menu-row" href={row.href}>
+            <div className="menu-icon-box">
+              {typeof row.icon === 'string' ? (
+                <span className="material-symbols-outlined">{row.icon}</span>
+              ) : (
+                <row.icon />
+              )}
+            </div>
+            <span className="menu-label">{row.label}</span>
+            <div className="menu-chevron">
+              <span className="material-symbols-outlined">chevron_right</span>
+            </div>
+          </a>
+        ))}
+      </nav>
+
+      <div className="social-card">
+        <div className="social-row">
+          {SOCIALS.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+            >
+              <social.icon />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <footer className="footer">
+        <p className="footer-copy">
+          &copy; 2026 {PROFILE.name}. {SITE.footerRights}
+        </p>
+      </footer>
+
+      <nav className="bottom-dock">
+        <a className="dock-tab active" href="#">
+          <span className="material-symbols-outlined">home</span>
+          Home
+        </a>
+        <a className="dock-tab" href="profile.html">
+          <span className="material-symbols-outlined">person</span>
+          Data Diri
+        </a>
+      </nav>
+
+      <div className={`toast${toast ? ' show' : ''}`}>
+        <span className="material-symbols-outlined">check_circle</span>
+        {toast}
+      </div>
+    </div>
   )
 }
 
