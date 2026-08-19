@@ -1,0 +1,57 @@
+BUAT HALAMAN PROFIL / LINKTREE (MOBILE-FIRST)
+
+Gaya: Kartu profil modern, tema putih-biru (blue & white). Lebar kartu maksimal ~440px,
+terpusat di tengah layar, seperti Linktree premium.
+
+DEFAULT MODE: LIGHT (terang). Dark mode hanya sebagai pilihan toggle.
+
+STRUKTUR DARI ATAS KE BAWAH:
+
+1. TOP BAR — KAPSUL MENGAMBANG:
+   - Berbentuk kapsul/pill (rounded penuh), melayang (floating) di atas cover,
+     margin dari tepi kiri & kanan (tidak menempel sampai ujung)
+   - Lebarnya memanjang tapi TIDAK menutupi konten utama (nama/avatar/link)
+   - Isi: tombol dark mode (ikon bulan/matahari) di pojok kiri,
+     di sisi kanan ada tombol share, semua dalam satu kapsul
+   - TIDAK ADA tombol musik
+   - Gaya: semi-transparan blur (glassmorphism), ikon biru tua
+
+2. COVER HEADER (tinggi ~220px):
+   - Gambar cover full width, dengan efek blur + brightness gelap di belakang
+   - Overlay gradasi transparan biru di bagian bawah
+
+3. AVATAR:
+   - Foto profil bulat 100px, melayang/tumpang tindih dengan cover (margin minus)
+   - Border putih, di kanan-bawah ada badge centang biru (verified)
+
+4. IDENTITAS (tengah):
+   - Nama besar tebal
+   - Username berbentuk pill/badge (ikon Instagram + @username)
+   - Bio singkat (warna abu)
+
+5. MENU DATA DIRI — TOMBOL KAPSUL DI BAWAH BIO:
+   - Tombol terpisah (bukan bagian daftar link), rounded penuh
+   - Berisi ikon user + teks "Data Diri" (atau "Lihat Data Diri")
+   - Saat diklik MENUJU KE HALAMAN TERPISAH (data-diri.html) — bukan scroll
+   - Tampil juga di versi dark mode
+
+6. STATS BAR (baris 3 statistik, background ice-blue, rounded):
+   - Contoh: "3+ Channel" / "Yobase Ekosistem" / "24/7 Aktif"
+
+7. DAFTAR LINK (kartu-kartu vertikal):
+   - Setiap kartu: ikon di kotak rounded kiri, judul + badge pill, deskripsi kecil,
+     panah chevron di kanan
+   - Satu kartu featured (gradasi biru terang) di urutan pertama
+   - Hover: naik sedikit, border biru, ikon berubah biru
+
+8. FOOTER: copyright kecil di bawah
+
+PROPERTI VISUAL:
+- Font: Plus Jakarta Sans
+- Ikon: Font Awesome (user, WhatsApp, Instagram, globe, share, moon/sun)
+- Warna utama: biru #2563eb, putih, ice blue #f0f7ff, abu #64748b
+- Sudut membulat (radius 14-20px), shadow lembut kebiruan
+- Juga tampilkan VERSI DARK MODE-nya (background navy gelap, elemen biru terang)
+
+Konten placeholder saja (nama "Nama Kamu", @username, links contoh), supaya mudah
+diganti nanti.
