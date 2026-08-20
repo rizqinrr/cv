@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { THEME_KEY } from './config/theme.js'
 import { PROFILE } from './config/profile.js'
 import { SITE, SOCIALS, COURSE, MENU } from './config/links.js'
+import CvPage from './CvPage.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -9,6 +10,18 @@ function App() {
   )
   const [toast, setToast] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const [viewer, setViewer] = useState(null)
+  const [route, setRoute] = useState(() => window.location.hash)
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setRoute(window.location.hash)
+      setViewer(null)
+      window.scrollTo(0, 0)
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -27,6 +40,19 @@ function App() {
     const t = setTimeout(() => setToast(''), 2400)
     return () => clearTimeout(t)
   }, [toast])
+
+  useEffect(() => {
+    if (!viewer) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setViewer(null)
+    }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [viewer])
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -58,6 +84,10 @@ function App() {
     } else {
       copyToClipboard(window.location.href)
     }
+  }
+
+  if (route === '#/cv') {
+    return <CvPage />
   }
 
   return (
@@ -94,16 +124,19 @@ function App() {
       </div>
 
       <section className={`hero${scrolled ? ' collapsed' : ''}`}>
-        <div className="cover">
+        <button className="cover" onClick={() => setViewer(PROFILE.cover)}>
           <img src={PROFILE.cover} alt="" className="cover-img" />
           <div className="cover-overlay" />
-        </div>
-        <div className="avatar-ring">
+        </button>
+        <button
+          className="avatar-ring"
+          onClick={() => setViewer(PROFILE.avatar)}
+        >
           <img src={PROFILE.avatar} alt={PROFILE.name} className="avatar-img" />
           <div className="verified-badge">
             <span className="material-symbols-outlined">check</span>
           </div>
-        </div>
+        </button>
         <h2 className="profile-name">{PROFILE.name}</h2>
         <span className="profile-handle">{PROFILE.handle}</span>
         <p className="profile-bio">{PROFILE.bio}</p>
@@ -162,21 +195,28 @@ function App() {
         </p>
       </footer>
 
-      <nav className="bottom-dock">
-        <a className="dock-tab active" href="#">
-          <span className="material-symbols-outlined">home</span>
-          Home
-        </a>
-        <a className="dock-tab" href="profile.html">
-          <span className="material-symbols-outlined">person</span>
-          Data Diri
-        </a>
-      </nav>
-
       <div className={`toast${toast ? ' show' : ''}`}>
         <span className="material-symbols-outlined">check_circle</span>
         {toast}
       </div>
+
+      {viewer && (
+        <div className="photo-viewer" onClick={() => setViewer(null)}>
+          <button
+            className="viewer-close"
+            onClick={() => setViewer(null)}
+            aria-label="Tutup"
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
+          <img
+            src={viewer}
+            alt=""
+            className="viewer-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   )
 }

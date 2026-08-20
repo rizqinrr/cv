@@ -48,9 +48,9 @@ export const COURSE = {
 
 export const MENU = [
   {
-    label: 'Data Diri',
-    icon: 'person',
-    href: 'profile.html',
+    label: 'CV',
+    icon: 'description',
+    href: '#/cv',
   },
   {
     label: 'Portfolio',
