@@ -900,7 +900,7 @@ body {
 
 .wheel-stage {
   position: relative;
-  flex: 0 0 40%;
+  flex: 0 0 30%;
   min-width: 0;
   overflow: hidden;
   touch-action: none;
@@ -970,26 +970,32 @@ body {
   flex: 1;
   min-width: 0;
   display: flex;
+}
+
+.project-panel-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-card {
+  display: flex;
   flex-direction: column;
-  background: var(--surface);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  box-shadow: var(--shadow-card);
-  padding: 20px;
+  height: 100%;
   overflow: hidden;
+  border-radius: clamp(18px, 2vw, 30px);
+  box-shadow: 0 16px 50px rgba(20, 17, 10, 0.18);
 }
 
-.project-photo {
+.project-card-media {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 14px;
-  overflow: hidden;
-  background: var(--primary-soft);
   flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  margin: 0;
+  overflow: hidden;
 }
 
-.project-photo-img {
+.project-card-media img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -997,75 +1003,109 @@ body {
   object-fit: cover;
 }
 
-.project-info {
-  padding-top: 18px;
+.project-card-media-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top right,
+    rgba(0, 0, 0, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
 }
 
-.project-title {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--on-surface);
+.project-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(20px, 2.5vw, 36px);
+  min-width: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
-.project-summary {
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--on-surface-variant);
+.project-card-title {
+  max-width: 16ch;
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
 }
 
-.project-tech {
+.project-card-summary {
+  margin-top: clamp(12px, 1.4vw, 18px);
+  max-width: 42rem;
+  font-size: clamp(12px, 1vw, 14px);
+  line-height: 1.55;
+  opacity: 0.82;
+}
+
+.project-card-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: clamp(14px, 1.6vw, 20px);
 }
 
 .tech-chip {
   padding: 6px 12px;
   border-radius: 999px;
-  background: var(--primary-soft);
-  color: var(--primary);
+  background: rgba(255, 255, 255, 0.16);
+  color: inherit;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.01em;
 }
 
-.project-counter {
-  margin-top: auto;
-  padding-top: 16px;
-  text-align: right;
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--on-surface-variant);
-  font-variant-numeric: tabular-nums;
+.flip-stack {
+  position: relative;
 }
 
-@media (max-width: 860px) {
-  .portfolio-stage {
-    flex-direction: column;
-    height: auto;
-    min-height: 0;
-  }
+.flip-stack-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px clamp(14px, 4vw, 64px);
+}
 
-  .wheel-stage {
-    flex: none;
-    width: 100%;
-    height: 300px;
-  }
+.flip-stack-stage {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 3 / 4.3;
+  perspective: 800px;
+}
 
-  .wheel-item {
-    left: 24%;
-  }
+.flip-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
 
-  .wheel-marker {
-    left: calc(24% - 26px);
-    width: 12px;
-    height: 12px;
-  }
+.flip-card-inner {
+  height: 100%;
+}
 
-  .portfolio-hint {
-    display: none;
-  }
+.flip-stack-end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.flip-stack-end p {
+  font-size: clamp(40px, 9vw, 120px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.07em;
+  color: var(--on-surface);
 }
