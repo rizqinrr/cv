@@ -3,6 +3,7 @@ import { THEME_KEY } from './config/theme.js'
 import { PROFILE } from './config/profile.js'
 import { SITE, SOCIALS, COURSE, MENU } from './config/links.js'
 import CvPage from './CvPage.jsx'
+import PortfolioPage from './PortfolioPage.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -88,6 +89,10 @@ function App() {
 
   if (route === '#/cv') {
     return <CvPage />
+  }
+
+  if (route === '#/portfolio') {
+    return <PortfolioPage />
   }
 
   return (

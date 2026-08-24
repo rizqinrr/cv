@@ -55,7 +55,7 @@ export const MENU = [
   {
     label: 'Portfolio',
     icon: FaBriefcase,
-    href: '#',
+    href: '#/portfolio',
   },
   {
     label: 'Grup Ngomongin AI',
