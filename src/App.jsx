@@ -55,9 +55,16 @@ function App() {
     }
   }, [viewer])
 
+  const playDarkSound = () => {
+    const audio = new Audio('sounds/faaah.mp3')
+    audio.volume = 0.7
+    audio.play().catch(() => {})
+  }
+
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
     setTheme(next)
+    if (next === 'dark') playDarkSound()
     setToast(next === 'dark' ? 'Mode Gelap Diaktifkan' : 'Mode Terang Diaktifkan')
   }
 
