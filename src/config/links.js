@@ -46,32 +46,58 @@ export const COURSE = {
   href: '#',
 }
 
-export const MENU = [
+export const TEMPLATES = [
   {
-    label: 'Desain Profil Neo-Brutalism (Demo)',
+    label: 'Neo-Brutalism',
     icon: 'palette',
+    desc: 'Pop Art & High Contrast',
     href: '#/neo',
   },
   {
-    label: 'Desain Profil Cyber Glass (Demo)',
+    label: 'Cyber Glass',
     icon: 'blur_on',
+    desc: 'Glassmorphism & Neon Glow',
     href: '#/cyber',
   },
   {
-    label: 'Desain Profil Editorial Luxury (Demo)',
+    label: 'Editorial Luxury',
     icon: 'auto_awesome',
+    desc: 'Serif Elegance & Gold Accents',
     href: '#/luxury',
   },
   {
-    label: 'Desain Profil Fluid Motion & Aura (Demo)',
+    label: 'Fluid Motion',
     icon: 'animation',
+    desc: 'Aura Spotlight & Spring Cursor',
     href: '#/fluid',
   },
   {
-    label: 'Desain Profil 8-Bit Retro Arcade (Demo)',
+    label: '8-Bit Retro Arcade',
     icon: 'sports_esports',
+    desc: 'Game Boy & 8-Bit Web Audio',
     href: '#/arcade',
   },
+  {
+    label: 'CLI Terminal Hacker',
+    icon: 'terminal',
+    desc: 'Phosphor CRT & Shell Emulator',
+    href: '#/terminal',
+  },
+  {
+    label: 'Swiss Editorial Grid',
+    icon: 'grid_view',
+    desc: 'International Style & Typographic Grid',
+    href: '#/swiss',
+  },
+  {
+    label: 'Airbnb Experience',
+    icon: 'home',
+    desc: 'Warm Hospitality, Clean Whitespace & Superhost UI',
+    href: '#/airbnb',
+  },
+]
+
+export const MENU = [
   {
     label: 'CV',
     icon: 'description',

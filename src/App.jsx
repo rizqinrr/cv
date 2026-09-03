@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { THEME_KEY, ACCENT } from './config/theme.js'
 import { PROFILE } from './config/profile.js'
-import { SITE, SOCIALS, COURSE, MENU } from './config/links.js'
+import { SITE, SOCIALS, COURSE, MENU, TEMPLATES } from './config/links.js'
 import CvPage from './CvPage.jsx'
 import PortfolioPage from './PortfolioPage.jsx'
 import NeoProfilePage from './templates/neo/NeoProfilePage.jsx'
@@ -9,6 +9,9 @@ import CyberProfilePage from './templates/cyber/CyberProfilePage.jsx'
 import { LuxuryProfilePage } from './templates/luxury/LuxuryProfilePage.jsx'
 import FluidProfilePage from './templates/fluid/FluidProfilePage.jsx'
 import ArcadeProfilePage from './templates/arcade/ArcadeProfilePage.jsx'
+import TerminalProfilePage from './templates/terminal/TerminalProfilePage.jsx'
+import SwissProfilePage from './templates/swiss/SwissProfilePage.jsx'
+import AirbnbProfilePage from './templates/airbnb/AirbnbProfilePage.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -18,11 +21,13 @@ function App() {
   const [scrolled, setScrolled] = useState(false)
   const [viewer, setViewer] = useState(null)
   const [route, setRoute] = useState(() => window.location.hash)
+  const [showTemplates, setShowTemplates] = useState(false)
 
   useEffect(() => {
     const onHashChange = () => {
       setRoute(window.location.hash)
       setViewer(null)
+      setShowTemplates(false)
       window.scrollTo(0, 0)
     }
     window.addEventListener('hashchange', onHashChange)
@@ -43,12 +48,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!toast) return
-    const t = setTimeout(() => setToast(''), 2400)
-    return () => clearTimeout(t)
-  }, [toast])
-
-  useEffect(() => {
     if (!viewer) return
     const onKey = (e) => {
       if (e.key === 'Escape') setViewer(null)
@@ -60,6 +59,24 @@ function App() {
       window.removeEventListener('keydown', onKey)
     }
   }, [viewer])
+
+  useEffect(() => {
+    if (!showTemplates) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setShowTemplates(false)
+    }
+    const onClickOutside = (e) => {
+      if (!e.target.closest('.template-switcher-wrap')) {
+        setShowTemplates(false)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('click', onClickOutside)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('click', onClickOutside)
+    }
+  }, [showTemplates])
 
   const playDarkSound = () => {
     const audio = new Audio('sounds/faaah.mp3')
@@ -128,9 +145,61 @@ function App() {
     return <ArcadeProfilePage />
   }
 
+  if (route === '#/terminal') {
+    return <TerminalProfilePage />
+  }
+
+  if (route === '#/swiss') {
+    return <SwissProfilePage />
+  }
+
+  if (route === '#/airbnb') {
+    return <AirbnbProfilePage />
+  }
+
   return (
     <div className="container">
       <header className="top-header">
+        <div className="template-switcher-wrap">
+          <button
+            className="icon-btn"
+            onClick={() => setShowTemplates((prev) => !prev)}
+            aria-label="Pilih Desain Profil"
+            title="Pilih Desain Profil"
+          >
+            <span className="material-symbols-outlined">dashboard_customize</span>
+            <span className="template-badge-dot" />
+          </button>
+
+          {showTemplates && (
+            <div className="template-dropdown">
+              <div className="template-dropdown-header">
+                <span>Pilih Desain Profil</span>
+                <span className="template-dropdown-count">{TEMPLATES.length} Tema</span>
+              </div>
+              {TEMPLATES.map((tpl) => (
+                <a
+                  key={tpl.href}
+                  href={tpl.href}
+                  className="template-item"
+                  onClick={() => setShowTemplates(false)}
+                >
+                  <div className="template-item-icon">
+                    <span className="material-symbols-outlined">{tpl.icon}</span>
+                  </div>
+                  <div className="template-item-info">
+                    <div className="template-item-label">{tpl.label}</div>
+                    <div className="template-item-desc">{tpl.desc}</div>
+                  </div>
+                  <div className="template-item-chevron">
+                    <span className="material-symbols-outlined">chevron_right</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+
         <div className="top-actions">
           <button
             className="icon-btn"

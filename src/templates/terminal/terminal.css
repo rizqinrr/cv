@@ -1,0 +1,782 @@
+/* ==========================================================================
+   CLI / Terminal Hacker Profile Page Stylesheet
+   MOBILE-FIRST ARCHITECTURE:
+   1. Base styles (<640px) designed specifically for mobile touchscreens (Termux / iSH CLI feel)
+   2. Progressive enhancement for tablet (>=640px) and desktop (>=1024px)
+   ========================================================================== */
+
+.term-page {
+  --term-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  --term-bg-screen: #0a0d0a;
+  --term-window-bg: #0d120d;
+  --term-color-primary: #00ff66;
+  --term-color-dim: rgba(0, 255, 102, 0.65);
+  --term-color-glow: rgba(0, 255, 102, 0.22);
+  --term-color-border: rgba(0, 255, 102, 0.3);
+  --term-color-highlight: #66ff99;
+  --term-color-danger: #ff4757;
+  --term-color-warn: #ffa502;
+  --term-color-blue: #38bdf8;
+  --term-color-purple: #c084fc;
+
+  min-height: 100dvh;
+  background-color: var(--term-bg-screen);
+  color: var(--term-color-primary);
+  font-family: var(--term-font);
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.45;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Color theme variants */
+.term-page.theme-amber {
+  --term-bg-screen: #0d0a06;
+  --term-window-bg: #140f09;
+  --term-color-primary: #ffb000;
+  --term-color-dim: rgba(255, 176, 0, 0.65);
+  --term-color-glow: rgba(255, 176, 0, 0.22);
+  --term-color-border: rgba(255, 176, 0, 0.3);
+  --term-color-highlight: #ffd066;
+  --term-color-danger: #ff5252;
+  --term-color-warn: #ff9800;
+  --term-color-blue: #00e5ff;
+}
+
+.term-page.theme-cyan {
+  --term-bg-screen: #060d0e;
+  --term-window-bg: #091517;
+  --term-color-primary: #00f0ff;
+  --term-color-dim: rgba(0, 240, 255, 0.65);
+  --term-color-glow: rgba(0, 240, 255, 0.22);
+  --term-color-border: rgba(0, 240, 255, 0.3);
+  --term-color-highlight: #70f5ff;
+  --term-color-danger: #ff4757;
+  --term-color-warn: #eccc68;
+  --term-color-blue: #38bdf8;
+}
+
+/* Subtle CRT Scanline overlay */
+.term-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.28) 50%
+  );
+  background-size: 100% 3px;
+  opacity: 0.55;
+}
+
+/* CRT Vignette glow */
+.term-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 49;
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.9);
+}
+
+/* Commercial Top Notification Banner - Mobile First */
+.term-comm-banner {
+  background: rgba(0, 0, 0, 0.88);
+  border-bottom: 1px solid var(--term-color-border);
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  z-index: 60;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  gap: 8px;
+}
+
+.term-comm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--term-color-glow);
+  border: 1px solid var(--term-color-primary);
+  color: var(--term-color-highlight);
+  padding: 3px 6px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.term-comm-badge .pulse-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--term-color-primary);
+  border-radius: 50%;
+  animation: term-blink 1.2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+.term-comm-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.term-btn-action {
+  font-family: var(--term-font);
+  font-size: 0.68rem;
+  background: transparent;
+  color: var(--term-color-primary);
+  border: 1px solid var(--term-color-border);
+  padding: 4px 8px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.term-btn-action:hover,
+.term-btn-action:active {
+  background: var(--term-color-primary);
+  color: #000;
+  box-shadow: 0 0 10px var(--term-color-glow);
+}
+
+/* Main Container - Mobile First */
+.term-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 10px auto 40px;
+  padding: 0 8px;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Terminal Window Frame - Mobile First */
+.term-window {
+  background: var(--term-window-bg);
+  border: 1px solid var(--term-color-border);
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 16px var(--term-color-glow);
+  overflow: hidden;
+}
+
+/* Window Titlebar - Mobile First */
+.term-titlebar {
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid var(--term-color-border);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  gap: 8px;
+}
+
+.term-window-dots {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.term-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.term-dot-red { background: #ff5f56; }
+.term-dot-yellow { background: #ffbd2e; }
+.term-dot-green { background: #27c93f; }
+
+.term-title {
+  font-size: 0.72rem;
+  color: var(--term-color-dim);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.term-palette-toggles {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.term-palette-btn {
+  background: transparent;
+  border: 1px solid var(--term-color-border);
+  color: var(--term-color-dim);
+  font-size: 0.6rem;
+  padding: 2px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--term-font);
+}
+
+.term-palette-btn.active {
+  background: var(--term-color-primary);
+  color: #000;
+  font-weight: 700;
+}
+
+/* Terminal Body - Mobile First */
+.term-body {
+  padding: 12px 10px;
+  font-size: 0.82rem;
+}
+
+/* Ascii Header - Mobile Centered Responsive */
+.term-ascii-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.term-ascii-banner {
+  white-space: pre;
+  font-size: clamp(0.38rem, 2.2vw, 0.68rem);
+  line-height: 1.15;
+  color: var(--term-color-highlight);
+  text-shadow: 0 0 6px var(--term-color-glow);
+  user-select: none;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Neofetch Mobile View (Stacked layout on mobile) */
+.term-neofetch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px dashed var(--term-color-border);
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+}
+
+.term-avatar-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.term-avatar-frame {
+  width: 96px;
+  height: 96px;
+  border: 2px solid var(--term-color-primary);
+  box-shadow: 0 0 10px var(--term-color-glow);
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-radius: 2px;
+}
+
+.term-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(150%) brightness(90%);
+  mix-blend-mode: luminosity;
+}
+
+.term-avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--term-color-glow);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+.term-status-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  background: rgba(0, 255, 102, 0.12);
+  border: 1px solid var(--term-color-primary);
+  font-size: 0.68rem;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+
+.term-sys-stats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.78rem;
+}
+
+.term-sys-row {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.06);
+  padding-bottom: 4px;
+}
+
+.term-sys-label {
+  color: var(--term-color-dim);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.term-sys-val {
+  color: var(--term-color-highlight);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+/* Prompt Line - Mobile First */
+.term-prompt-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 6px;
+  margin: 14px 0 8px;
+  font-size: 0.78rem;
+}
+
+.term-user {
+  color: var(--term-color-blue);
+  font-weight: 700;
+}
+
+.term-at {
+  color: var(--term-color-dim);
+}
+
+.term-host {
+  color: var(--term-color-purple);
+  font-weight: 700;
+}
+
+.term-path {
+  color: var(--term-color-warn);
+}
+
+.term-dollar {
+  color: var(--term-color-primary);
+  font-weight: 700;
+}
+
+.term-command {
+  color: var(--term-color-highlight);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* Directory / Virtual Filesystem List - Mobile First (1 column full touch target) */
+.term-fs-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 18px;
+}
+
+.term-file-item {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--term-color-border);
+  padding: 10px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--term-color-primary);
+  transition: all 0.15s ease;
+  font-size: 0.8rem;
+  min-height: 48px; /* Touch target standard */
+  box-sizing: border-box;
+}
+
+.term-file-item:active,
+.term-file-item:hover {
+  background: var(--term-color-glow);
+  border-color: var(--term-color-primary);
+  transform: translateX(3px);
+  box-shadow: 0 0 10px var(--term-color-glow);
+}
+
+.term-file-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.term-file-icon {
+  font-size: 1rem;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.term-file-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.term-file-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--term-color-highlight);
+}
+
+.term-file-perm {
+  font-size: 0.68rem;
+  color: var(--term-color-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.term-file-badge {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--term-color-border);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+/* Technical Skills Section - Mobile First */
+.term-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 18px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 12px;
+  border: 1px dashed var(--term-color-border);
+  border-radius: 2px;
+}
+
+.term-skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.75rem;
+}
+
+.term-skill-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.term-skill-label {
+  color: var(--term-color-highlight);
+  font-weight: 500;
+}
+
+.term-skill-pct {
+  color: var(--term-color-primary);
+  font-weight: 700;
+}
+
+.term-skill-bar {
+  font-family: var(--term-font);
+  color: var(--term-color-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+/* Interactive Command Output History */
+.term-interactive-history {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.term-history-entry {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 10px;
+  border-left: 2px solid var(--term-color-primary);
+  font-size: 0.78rem;
+  border-radius: 0 2px 2px 0;
+}
+
+.term-history-output {
+  color: var(--term-color-dim);
+  margin-top: 4px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Command Prompt Input Area - Mobile First */
+.term-input-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid var(--term-color-primary);
+  padding: 8px 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--term-color-glow);
+  margin-top: 14px;
+}
+
+.term-input-field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--term-color-highlight);
+  font-family: var(--term-font);
+  font-size: 0.82rem;
+  min-width: 0;
+}
+
+.term-btn-exec {
+  background: var(--term-color-primary);
+  color: #000;
+  border: none;
+  font-family: var(--term-font);
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.term-btn-exec:hover,
+.term-btn-exec:active {
+  background: var(--term-color-highlight);
+}
+
+/* Blinking terminal cursor */
+.term-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 1.1em;
+  background: var(--term-color-primary);
+  vertical-align: middle;
+  animation: term-blink 1s step-end infinite;
+  flex-shrink: 0;
+}
+
+@keyframes term-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Quick command chips - Mobile horizontal scrollable or neat flex */
+.term-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  align-items: center;
+}
+
+.term-chip {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--term-color-border);
+  color: var(--term-color-dim);
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  font-family: var(--term-font);
+  font-size: 0.7rem;
+}
+
+.term-chip:hover,
+.term-chip:active {
+  border-color: var(--term-color-primary);
+  color: var(--term-color-highlight);
+  background: var(--term-color-glow);
+}
+
+/* Commercial Buy Modal - Mobile First */
+.term-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.term-modal-card {
+  background: var(--term-window-bg);
+  border: 1px solid var(--term-color-primary);
+  box-shadow: 0 0 25px var(--term-color-glow);
+  max-width: 500px;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.term-modal-header {
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid var(--term-color-border);
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--term-color-highlight);
+  font-size: 0.78rem;
+}
+
+.term-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--term-color-danger);
+  font-family: var(--term-font);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 4px;
+}
+
+.term-modal-body {
+  padding: 14px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.term-modal-specs {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px dashed var(--term-color-border);
+  padding: 10px;
+  margin: 12px 0;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.term-modal-footer {
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid var(--term-color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   PROGRESSIVE ENHANCEMENT: TABLET & DESKTOP BREAKPOINTS
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .term-container {
+    max-width: 640px;
+    padding: 0 16px;
+    margin: 20px auto 50px;
+  }
+
+  .term-body {
+    padding: 18px;
+    font-size: 0.88rem;
+  }
+
+  .term-neofetch {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .term-avatar-frame {
+    width: 110px;
+    height: 110px;
+  }
+
+  .term-sys-row {
+    flex-direction: row;
+    gap: 8px;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .term-sys-label {
+    min-width: 90px;
+    font-size: 0.82rem;
+  }
+
+  .term-sys-val {
+    font-size: 0.82rem;
+  }
+
+  .term-fs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .term-skill-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .term-skill-top {
+    width: 160px;
+    flex-shrink: 0;
+  }
+
+  .term-skill-bar {
+    flex: 1;
+    margin: 0 10px;
+  }
+
+  .term-modal-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .term-container {
+    max-width: 860px;
+    margin: 28px auto 60px;
+  }
+
+  .term-body {
+    padding: 24px;
+    font-size: 0.9rem;
+  }
+
+  .term-neofetch {
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+
+  .term-avatar-frame {
+    width: 130px;
+    height: 130px;
+  }
+}

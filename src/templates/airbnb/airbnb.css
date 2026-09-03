@@ -1,0 +1,724 @@
+/* ==========================================================================
+   Airbnb Experience & Superhost Profile Page Stylesheet
+   Design Language System (DLS) tokens:
+   - Whitespace 12px base grid
+   - Brand Rausch #ff385c & Product Crimson #da1249
+   - Soft black #222222, muted grey #717171, borders #dddddd / #ebebeb
+   - Generous rounded corners (16px - 32px, pill 50px)
+   - Micro tinted elevations (0px 2px 4px rgba(0,0,0,0.08))
+   MOBILE-FIRST ARCHITECTURE
+   ========================================================================== */
+
+.abnb-page {
+  --abnb-font: -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', Roboto, 'Helvetica Neue', sans-serif;
+  --abnb-bg: #ffffff;
+  --abnb-bg-secondary: #f7f7f7;
+  --abnb-color-rausch: #ff385c;
+  --abnb-color-crimson: #da1249;
+  --abnb-color-hof: #222222;
+  --abnb-color-foggy: #717171;
+  --abnb-color-bobo: #b0b0b0;
+  --abnb-color-deco: #dddddd;
+  --abnb-color-bebe: #ebebeb;
+  --abnb-star-gold: #ffb400;
+
+  --abnb-radius-sm: 8px;
+  --abnb-radius-md: 14px;
+  --abnb-radius-lg: 20px;
+  --abnb-radius-xl: 24px;
+  --abnb-radius-pill: 50px;
+
+  --abnb-shadow-low: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --abnb-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --abnb-shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.12);
+  --abnb-shadow-dock: 0 -2px 14px rgba(0, 0, 0, 0.08);
+
+  min-height: 100dvh;
+  background-color: var(--abnb-bg);
+  color: var(--abnb-color-hof);
+  font-family: var(--abnb-font);
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.45;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sticky Search & Navigation Bar (Airbnb style) */
+.abnb-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: #ffffff;
+  border-bottom: 1px solid var(--abnb-color-bebe);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.abnb-search-pill {
+  flex: 1;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid var(--abnb-color-deco);
+  border-radius: var(--abnb-radius-pill);
+  box-shadow: var(--abnb-shadow-low);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.abnb-search-pill:hover,
+.abnb-search-pill:active {
+  box-shadow: var(--abnb-shadow-hover);
+  border-color: var(--abnb-color-bobo);
+}
+
+.abnb-search-icon {
+  color: var(--abnb-color-rausch);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.abnb-search-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.abnb-search-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--abnb-color-hof);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.abnb-search-sub {
+  font-size: 0.7rem;
+  color: var(--abnb-color-foggy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.abnb-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.abnb-btn-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--abnb-color-deco);
+  background: #ffffff;
+  color: var(--abnb-color-hof);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.15s ease;
+}
+
+.abnb-btn-circle:hover,
+.abnb-btn-circle:active {
+  background: var(--abnb-bg-secondary);
+  border-color: var(--abnb-color-bobo);
+}
+
+/* Main Container (Mobile First) */
+.abnb-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 12px 14px 100px; /* space for bottom reserve dock */
+  box-sizing: border-box;
+}
+
+/* Listing Hero Gallery (Airbnb Listing Image Header) */
+.abnb-hero-gallery {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: var(--abnb-radius-lg);
+  overflow: hidden;
+  background: var(--abnb-bg-secondary);
+  margin-bottom: 16px;
+  border: 1px solid var(--abnb-color-bebe);
+}
+
+.abnb-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.abnb-gallery-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: var(--abnb-radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--abnb-color-hof);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.abnb-gallery-badge span {
+  color: var(--abnb-color-rausch);
+}
+
+.abnb-wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--abnb-color-foggy);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease;
+}
+
+.abnb-wishlist-btn.active {
+  color: var(--abnb-color-rausch);
+}
+
+.abnb-wishlist-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Host Info & Title Section */
+.abnb-host-card {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--abnb-color-bebe);
+  margin-bottom: 18px;
+}
+
+.abnb-listing-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--abnb-color-hof);
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.abnb-listing-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 0.82rem;
+  color: var(--abnb-color-hof);
+}
+
+.abnb-rating {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.abnb-rating .star {
+  color: var(--abnb-star-gold);
+  font-size: 0.9rem;
+}
+
+.abnb-reviews-count {
+  color: var(--abnb-color-foggy);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.abnb-dot-sep {
+  color: var(--abnb-color-bobo);
+}
+
+.abnb-superhost-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--abnb-color-hof);
+  font-weight: 600;
+}
+
+.abnb-superhost-badge {
+  background: var(--abnb-color-rausch);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  padding: 1px 4px;
+  font-weight: 700;
+}
+
+/* Host Profile Row */
+.abnb-profile-snippet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--abnb-color-bebe);
+  margin-bottom: 18px;
+}
+
+.abnb-snippet-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.abnb-avatar-wrap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid var(--abnb-color-bebe);
+  overflow: hidden;
+}
+
+.abnb-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.abnb-superhost-pin {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: var(--abnb-color-rausch);
+  color: #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  border: 2px solid #fff;
+}
+
+.abnb-snippet-text h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--abnb-color-hof);
+}
+
+.abnb-snippet-text p {
+  font-size: 0.78rem;
+  color: var(--abnb-color-foggy);
+  margin: 2px 0 0;
+}
+
+/* Highlights / Amenities Section (Icon rows) */
+.abnb-amenities-section {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--abnb-color-bebe);
+  margin-bottom: 22px;
+}
+
+.abnb-amenity-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.abnb-amenity-icon {
+  font-size: 1.35rem;
+  color: var(--abnb-color-hof);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.abnb-amenity-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--abnb-color-hof);
+  line-height: 1.25;
+}
+
+.abnb-amenity-desc {
+  font-size: 0.78rem;
+  color: var(--abnb-color-foggy);
+  margin-top: 2px;
+}
+
+/* Section Titles */
+.abnb-section-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--abnb-color-hof);
+  margin: 0 0 14px;
+  letter-spacing: -0.01em;
+}
+
+/* Curated Directory / Experience Cards (Airbnb style grid) */
+.abnb-listings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.abnb-card-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  border: 1px solid var(--abnb-color-deco);
+  border-radius: var(--abnb-radius-lg);
+  background: #ffffff;
+  text-decoration: none;
+  color: var(--abnb-color-hof);
+  box-shadow: var(--abnb-shadow-card);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  min-height: 58px; /* Touch target */
+  box-sizing: border-box;
+}
+
+.abnb-card-item:hover,
+.abnb-card-item:active {
+  transform: translateY(-2px);
+  box-shadow: var(--abnb-shadow-hover);
+  border-color: var(--abnb-color-bobo);
+}
+
+.abnb-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.abnb-card-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--abnb-radius-md);
+  background: var(--abnb-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--abnb-color-rausch);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  border: 1px solid var(--abnb-color-bebe);
+}
+
+.abnb-card-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.abnb-card-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--abnb-color-hof);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.abnb-card-desc {
+  font-size: 0.74rem;
+  color: var(--abnb-color-foggy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.abnb-card-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.abnb-card-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: var(--abnb-bg-secondary);
+  border-radius: var(--abnb-radius-pill);
+  color: var(--abnb-color-hof);
+  border: 1px solid var(--abnb-color-bebe);
+}
+
+.abnb-card-arrow {
+  color: var(--abnb-color-foggy);
+  font-size: 1.1rem;
+}
+
+/* Reviews & Testimonials Section (Airbnb Star ratings) */
+.abnb-reviews-box {
+  background: var(--abnb-bg-secondary);
+  border-radius: var(--abnb-radius-xl);
+  padding: 16px;
+  border: 1px solid var(--abnb-color-bebe);
+  margin-bottom: 24px;
+}
+
+.abnb-reviews-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.abnb-rating-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.abnb-rate-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.76rem;
+}
+
+.abnb-rate-bar-track {
+  flex: 1;
+  height: 4px;
+  background: var(--abnb-color-bebe);
+  border-radius: 2px;
+  margin: 0 10px;
+  overflow: hidden;
+}
+
+.abnb-rate-bar-fill {
+  height: 100%;
+  background: var(--abnb-color-hof);
+  border-radius: 2px;
+}
+
+.abnb-rate-score {
+  font-weight: 700;
+  width: 26px;
+  text-align: right;
+}
+
+/* Floating Bottom Reserve Bar (Airbnb Mobile Footer Bar) */
+.abnb-reserve-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  background: #ffffff;
+  border-top: 1px solid var(--abnb-color-deco);
+  box-shadow: var(--abnb-shadow-dock);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.abnb-reserve-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.abnb-price-tag {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--abnb-color-hof);
+}
+
+.abnb-price-tag span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--abnb-color-foggy);
+}
+
+.abnb-reserve-dates {
+  font-size: 0.72rem;
+  color: var(--abnb-color-foggy);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.abnb-reserve-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.abnb-btn-reserve {
+  background: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--abnb-radius-sm);
+  font-family: var(--abnb-font);
+  font-weight: 700;
+  font-size: 0.84rem;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 6px rgba(225, 29, 72, 0.3);
+}
+
+.abnb-btn-reserve:hover,
+.abnb-btn-reserve:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+}
+
+.abnb-btn-reserve-alt {
+  background: #ffffff;
+  color: var(--abnb-color-hof);
+  border: 1px solid var(--abnb-color-hof);
+  padding: 10px 14px;
+  border-radius: var(--abnb-radius-sm);
+  font-family: var(--abnb-font);
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Commercial Order Modal */
+.abnb-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.abnb-modal-card {
+  background: #ffffff;
+  border-radius: var(--abnb-radius-xl);
+  max-width: 480px;
+  width: 100%;
+  padding: 22px 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.abnb-modal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--abnb-color-bebe);
+  padding-bottom: 10px;
+}
+
+.abnb-modal-top h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.abnb-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--abnb-color-hof);
+  padding: 4px;
+}
+
+.abnb-modal-specs {
+  background: var(--abnb-bg-secondary);
+  border-radius: var(--abnb-radius-md);
+  padding: 12px 14px;
+  margin: 14px 0;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--abnb-color-hof);
+}
+
+/* ==========================================================================
+   PROGRESSIVE ENHANCEMENT: TABLET & DESKTOP BREAKPOINTS
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .abnb-container {
+    max-width: 680px;
+    padding: 18px 20px 110px;
+  }
+
+  .abnb-hero-gallery {
+    aspect-ratio: 16/9;
+  }
+
+  .abnb-listings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .abnb-reserve-bar {
+    max-width: 680px;
+    margin: 0 auto;
+    border-radius: var(--abnb-radius-xl) var(--abnb-radius-xl) 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .abnb-container {
+    max-width: 860px;
+    padding: 24px 24px 120px;
+  }
+
+  .abnb-hero-gallery {
+    aspect-ratio: 21/9;
+  }
+
+  .abnb-reserve-bar {
+    max-width: 860px;
+  }
+}
