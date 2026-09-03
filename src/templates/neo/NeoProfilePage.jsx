@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { PROFILE } from './config/profile.js'
-import { SOCIALS, COURSE, MENU } from './config/links.js'
+import { PROFILE } from '../../config/profile.js'
+import { SOCIALS, COURSE, MENU } from '../../config/links.js'
 import { FaShareAlt, FaCheck, FaCopy, FaShoppingCart, FaArrowLeft } from 'react-icons/fa'
+import './neo.css'
 
 export default function NeoProfilePage() {
   const [copied, setCopied] = useState(false)

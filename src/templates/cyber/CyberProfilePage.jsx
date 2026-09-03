@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { PROFILE } from './config/profile.js'
-import { SOCIALS, COURSE, MENU } from './config/links.js'
+import { PROFILE } from '../../config/profile.js'
+import { SOCIALS, COURSE, MENU } from '../../config/links.js'
 import { FaShareAlt, FaCheck, FaCopy, FaShoppingCart, FaArrowLeft, FaTerminal } from 'react-icons/fa'
+import './cyber.css'
 
 export default function CyberProfilePage() {
   const [copied, setCopied] = useState(false)

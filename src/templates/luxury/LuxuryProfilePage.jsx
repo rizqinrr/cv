@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { PROFILE } from './config/profile.js';
-import { MENU, SOCIALS } from './config/links.js';
+import { PROFILE } from '../../config/profile.js';
+import { MENU, SOCIALS } from '../../config/links.js';
+import './luxury.css';
 
 export function LuxuryProfilePage() {
   const [copied, setCopied] = useState(false);
@@ -218,4 +219,3 @@ export function LuxuryProfilePage() {
     </div>
   );
 }
-

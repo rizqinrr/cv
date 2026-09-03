@@ -1,0 +1,424 @@
+/* ==========================================================================
+   Neo-Brutalism Profile Template Styles
+   ========================================================================== */
+
+.neo-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fdfae7;
+  background-image:
+    radial-gradient(#000000 1.2px, transparent 1.2px),
+    radial-gradient(#000000 1.2px, #fdfae7 1.2px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  color: #111111;
+  padding-bottom: 60px;
+}
+
+.neo-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 3px solid #000;
+  box-shadow: 0 4px 0 #000;
+}
+
+.neo-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.neo-container {
+  width: 100%;
+  max-width: 520px;
+  margin: 32px auto 0;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Base Buttons */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 800;
+  text-decoration: none;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+  color: #000;
+  background: #fff;
+  font-size: 13px;
+}
+
+.neo-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.neo-btn-sm {
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.neo-btn-lg {
+  padding: 12px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  border-width: 3px;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.neo-btn-block {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border-width: 3px;
+}
+
+.neo-btn-accent {
+  background: #ff5e7e;
+  color: #fff;
+}
+
+.neo-btn-accent:hover {
+  background: #ff476c;
+}
+
+.neo-btn-primary {
+  background: #ffe600;
+  color: #000;
+}
+
+.neo-btn-primary:hover {
+  background: #ffd000;
+}
+
+.neo-btn-buy {
+  background: #00e599;
+  color: #000;
+  font-weight: 900;
+}
+
+.neo-btn-buy:hover {
+  background: #00c784;
+}
+
+.neo-btn-secondary {
+  background: #fff;
+}
+
+/* Base Cards */
+.neo-card {
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 #000;
+  padding: 24px;
+  position: relative;
+}
+
+/* Hero Profile Card */
+.neo-hero-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+}
+
+.neo-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #000;
+  color: #00e599;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.neo-status-dot {
+  width: 8px;
+  height: 8px;
+  background: #00e599;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00e599;
+}
+
+.neo-avatar-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 16px;
+}
+
+.neo-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  background: #ffe600;
+}
+
+.neo-avatar-tag {
+  position: absolute;
+  bottom: -6px;
+  right: -8px;
+  background: #ff5e7e;
+  color: #fff;
+  font-weight: 900;
+  font-size: 10px;
+  padding: 2px 6px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  border-radius: 4px;
+}
+
+.neo-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.neo-handle {
+  display: inline-block;
+  background: #ffe600;
+  color: #000;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 2px 8px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.neo-bio {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.neo-social-strip {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.neo-social-btn {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 #000;
+  color: #000;
+  font-size: 18px;
+  text-decoration: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.neo-social-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #000;
+  background: #00f0ff;
+}
+
+.neo-social-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+/* Featured / Course Card */
+.neo-featured-card {
+  background: #fff;
+  border-color: #000;
+}
+
+.neo-tag {
+  display: inline-block;
+  background: #ff5e7e;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 #000;
+  margin-bottom: 12px;
+}
+
+.neo-featured-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.neo-featured-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: #00f0ff;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.neo-featured-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.neo-featured-desc {
+  font-size: 13px;
+  color: #555;
+  font-weight: 600;
+}
+
+/* Explore Links Grid */
+.neo-links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.neo-section-heading {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #000;
+  margin-left: 4px;
+}
+
+.neo-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.neo-link-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 #000;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.neo-link-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+  background: #ffe600;
+}
+
+.neo-link-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.neo-link-icon-box {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neo-link-label {
+  font-size: 15px;
+  font-weight: 800;
+  flex: 1;
+}
+
+.neo-link-arrow {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Promo Card / Buy Source Code */
+.neo-promo-card {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  box-shadow: 6px 6px 0 #ff5e7e;
+}
+
+.neo-promo-badge {
+  display: inline-block;
+  background: #00e599;
+  color: #000;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.neo-promo-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.neo-promo-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #ddd;
+  margin-bottom: 18px;
+}
+
+.neo-promo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Footer */
+.neo-footer {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  margin-top: 10px;
+}

@@ -63,6 +63,16 @@ export const MENU = [
     href: '#/luxury',
   },
   {
+    label: 'Desain Profil Fluid Motion & Aura (Demo)',
+    icon: 'animation',
+    href: '#/fluid',
+  },
+  {
+    label: 'Desain Profil 8-Bit Retro Arcade (Demo)',
+    icon: 'sports_esports',
+    href: '#/arcade',
+  },
+  {
     label: 'CV',
     icon: 'description',
     href: '#/cv',

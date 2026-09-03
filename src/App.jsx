@@ -4,9 +4,11 @@ import { PROFILE } from './config/profile.js'
 import { SITE, SOCIALS, COURSE, MENU } from './config/links.js'
 import CvPage from './CvPage.jsx'
 import PortfolioPage from './PortfolioPage.jsx'
-import NeoProfilePage from './NeoProfilePage.jsx'
-import CyberProfilePage from './CyberProfilePage.jsx'
-import { LuxuryProfilePage } from './LuxuryProfilePage.jsx'
+import NeoProfilePage from './templates/neo/NeoProfilePage.jsx'
+import CyberProfilePage from './templates/cyber/CyberProfilePage.jsx'
+import { LuxuryProfilePage } from './templates/luxury/LuxuryProfilePage.jsx'
+import FluidProfilePage from './templates/fluid/FluidProfilePage.jsx'
+import ArcadeProfilePage from './templates/arcade/ArcadeProfilePage.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -116,6 +118,14 @@ function App() {
 
   if (route === '#/luxury') {
     return <LuxuryProfilePage />
+  }
+
+  if (route === '#/fluid') {
+    return <FluidProfilePage />
+  }
+
+  if (route === '#/arcade') {
+    return <ArcadeProfilePage />
   }
 
   return (
