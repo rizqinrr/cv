@@ -53,6 +53,11 @@ export const MENU = [
     href: '#/neo',
   },
   {
+    label: 'Desain Profil Cyber Glass (Demo)',
+    icon: 'blur_on',
+    href: '#/cyber',
+  },
+  {
     label: 'CV',
     icon: 'description',
     href: '#/cv',

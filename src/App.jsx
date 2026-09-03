@@ -5,6 +5,7 @@ import { SITE, SOCIALS, COURSE, MENU } from './config/links.js'
 import CvPage from './CvPage.jsx'
 import PortfolioPage from './PortfolioPage.jsx'
 import NeoProfilePage from './NeoProfilePage.jsx'
+import CyberProfilePage from './CyberProfilePage.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -106,6 +107,10 @@ function App() {
 
   if (route === '#/neo') {
     return <NeoProfilePage />
+  }
+
+  if (route === '#/cyber') {
+    return <CyberProfilePage />
   }
 
   return (
