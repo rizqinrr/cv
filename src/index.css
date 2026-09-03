@@ -14,6 +14,11 @@
   --shadow-soft: 0 10px 30px -8px rgba(37, 99, 235, 0.14);
   --shadow-card: 0 8px 24px -6px rgba(37, 99, 235, 0.1);
   --shadow-dock: 0 12px 30px -6px rgba(37, 99, 235, 0.25);
+  --bg-glow-1: rgba(37, 99, 235, 0.08);
+  --bg-glow-2: rgba(147, 164, 216, 0.12);
+  --bg-glow-3: rgba(37, 99, 235, 0.06);
+  --cover-fade: rgba(37, 99, 235, 0.18);
+  --accent: #2563eb;
   --dark-card: #0f172a;
   --on-dark: #ffffff;
 }
@@ -34,8 +39,63 @@
   --shadow-soft: 0 10px 30px -8px rgba(0, 0, 0, 0.5);
   --shadow-card: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
   --shadow-dock: 0 12px 30px -6px rgba(0, 0, 0, 0.55);
+  --bg-glow-1: rgba(59, 130, 246, 0.1);
+  --bg-glow-2: rgba(99, 102, 241, 0.08);
+  --bg-glow-3: rgba(59, 130, 246, 0.06);
+  --cover-fade: rgba(59, 130, 246, 0.22);
+  --accent: #60a5fa;
   --dark-card: #ffffff;
   --on-dark: #0f172a;
+}
+
+[data-accent='earthy'] {
+  --background: #f6f1e7;
+  --surface: #fdfaf4;
+  --surface-soft: rgba(253, 250, 244, 0.65);
+  --primary: #a98b76;
+  --primary-deep: #8a6d55;
+  --primary-soft: rgba(169, 139, 118, 0.14);
+  --on-primary: #ffffff;
+  --on-surface: #2b241d;
+  --on-surface-variant: #7d7264;
+  --outline-variant: #e6ddcc;
+  --glass-bg: rgba(253, 250, 244, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --shadow-soft: 0 10px 30px -8px rgba(169, 139, 118, 0.18);
+  --shadow-card: 0 8px 24px -6px rgba(169, 139, 118, 0.14);
+  --shadow-dock: 0 12px 30px -6px rgba(169, 139, 118, 0.3);
+  --bg-glow-1: rgba(169, 139, 118, 0.12);
+  --bg-glow-2: rgba(186, 191, 148, 0.16);
+  --bg-glow-3: rgba(169, 139, 118, 0.08);
+  --cover-fade: rgba(169, 139, 118, 0.22);
+  --accent: #babf94;
+  --dark-card: #2b241d;
+  --on-dark: #fdfaf4;
+}
+
+[data-theme='dark'][data-accent='earthy'] {
+  --background: #171310;
+  --surface: #211b16;
+  --surface-soft: rgba(33, 27, 22, 0.65);
+  --primary: #bfa28c;
+  --primary-deep: #a98b76;
+  --primary-soft: rgba(191, 162, 140, 0.2);
+  --on-primary: #171310;
+  --on-surface: #f3ede2;
+  --on-surface-variant: #a89c8c;
+  --outline-variant: #3a3128;
+  --glass-bg: rgba(23, 19, 16, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-soft: 0 10px 30px -8px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
+  --shadow-dock: 0 12px 30px -6px rgba(0, 0, 0, 0.55);
+  --bg-glow-1: rgba(191, 162, 140, 0.09);
+  --bg-glow-2: rgba(186, 191, 148, 0.07);
+  --bg-glow-3: rgba(191, 162, 140, 0.05);
+  --cover-fade: rgba(191, 162, 140, 0.18);
+  --accent: #babf94;
+  --dark-card: #f3ede2;
+  --on-dark: #211b16;
 }
 
 * {
@@ -49,9 +109,9 @@
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(circle at 15% 5%, rgba(37, 99, 235, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 85% 25%, rgba(147, 164, 216, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(37, 99, 235, 0.06) 0%, transparent 50%);
+    radial-gradient(circle at 15% 5%, var(--bg-glow-1) 0%, transparent 45%),
+    radial-gradient(circle at 85% 25%, var(--bg-glow-2) 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, var(--bg-glow-3) 0%, transparent 50%);
   background-attachment: fixed;
   color: var(--on-surface);
   min-height: 100dvh;
@@ -227,11 +287,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    rgba(37, 99, 235, 0.18) 100%
-  );
+  background: linear-gradient(to bottom, transparent 50%, var(--cover-fade) 100%);
 }
 
 .avatar-ring {
@@ -275,8 +331,8 @@ body {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--primary);
-  color: var(--on-primary);
+  background: var(--accent);
+  color: #ffffff;
   border: 3px solid var(--surface);
   display: flex;
   align-items: center;
@@ -547,6 +603,7 @@ body {
 
 .toast .material-symbols-outlined {
   font-size: 18px;
+  color: var(--accent);
 }
 
 .photo-viewer {
@@ -1108,4 +1165,429 @@ body {
   line-height: 1;
   letter-spacing: -0.07em;
   color: var(--on-surface);
+}
+
+/* ==========================================================================
+   Neo-Brutalism Profile Template Styles
+   ========================================================================== */
+
+.neo-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fdfae7;
+  background-image: 
+    radial-gradient(#000000 1.2px, transparent 1.2px),
+    radial-gradient(#000000 1.2px, #fdfae7 1.2px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  color: #111111;
+  padding-bottom: 60px;
+}
+
+.neo-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 3px solid #000;
+  box-shadow: 0 4px 0 #000;
+}
+
+.neo-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.neo-container {
+  width: 100%;
+  max-width: 520px;
+  margin: 32px auto 0;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Base Buttons */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 800;
+  text-decoration: none;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+  color: #000;
+  background: #fff;
+  font-size: 13px;
+}
+
+.neo-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.neo-btn-sm {
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.neo-btn-lg {
+  padding: 12px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  border-width: 3px;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.neo-btn-block {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border-width: 3px;
+}
+
+.neo-btn-accent {
+  background: #ff5e7e;
+  color: #fff;
+}
+
+.neo-btn-accent:hover {
+  background: #ff476c;
+}
+
+.neo-btn-primary {
+  background: #ffe600;
+  color: #000;
+}
+
+.neo-btn-primary:hover {
+  background: #ffd000;
+}
+
+.neo-btn-buy {
+  background: #00e599;
+  color: #000;
+  font-weight: 900;
+}
+
+.neo-btn-buy:hover {
+  background: #00c784;
+}
+
+.neo-btn-secondary {
+  background: #fff;
+}
+
+/* Base Cards */
+.neo-card {
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 #000;
+  padding: 24px;
+  position: relative;
+}
+
+/* Hero Profile Card */
+.neo-hero-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+}
+
+.neo-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #000;
+  color: #00e599;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.neo-status-dot {
+  width: 8px;
+  height: 8px;
+  background: #00e599;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00e599;
+}
+
+.neo-avatar-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 16px;
+}
+
+.neo-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  background: #ffe600;
+}
+
+.neo-avatar-tag {
+  position: absolute;
+  bottom: -6px;
+  right: -8px;
+  background: #ff5e7e;
+  color: #fff;
+  font-weight: 900;
+  font-size: 10px;
+  padding: 2px 6px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  border-radius: 4px;
+}
+
+.neo-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.neo-handle {
+  display: inline-block;
+  background: #ffe600;
+  color: #000;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 2px 8px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.neo-bio {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.neo-social-strip {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.neo-social-btn {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 #000;
+  color: #000;
+  font-size: 18px;
+  text-decoration: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.neo-social-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #000;
+  background: #00f0ff;
+}
+
+.neo-social-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+/* Featured / Course Card */
+.neo-featured-card {
+  background: #fff;
+  border-color: #000;
+}
+
+.neo-tag {
+  display: inline-block;
+  background: #ff5e7e;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 #000;
+  margin-bottom: 12px;
+}
+
+.neo-featured-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.neo-featured-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: #00f0ff;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.neo-featured-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.neo-featured-desc {
+  font-size: 13px;
+  color: #555;
+  font-weight: 600;
+}
+
+/* Explore Links Grid */
+.neo-links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.neo-section-heading {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #000;
+  margin-left: 4px;
+}
+
+.neo-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.neo-link-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 #000;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.neo-link-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+  background: #ffe600;
+}
+
+.neo-link-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.neo-link-icon-box {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neo-link-label {
+  font-size: 15px;
+  font-weight: 800;
+  flex: 1;
+}
+
+.neo-link-arrow {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Promo Card / Buy Source Code */
+.neo-promo-card {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  box-shadow: 6px 6px 0 #ff5e7e;
+}
+
+.neo-promo-badge {
+  display: inline-block;
+  background: #00e599;
+  color: #000;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.neo-promo-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.neo-promo-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #ddd;
+  margin-bottom: 18px;
+}
+
+.neo-promo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Footer */
+.neo-footer {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  margin-top: 10px;
 }

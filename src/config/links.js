@@ -48,6 +48,11 @@ export const COURSE = {
 
 export const MENU = [
   {
+    label: 'Desain Profil Neo-Brutalism (Demo)',
+    icon: 'palette',
+    href: '#/neo',
+  },
+  {
     label: 'CV',
     icon: 'description',
     href: '#/cv',

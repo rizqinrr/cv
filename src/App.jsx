@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { THEME_KEY } from './config/theme.js'
+import { THEME_KEY, ACCENT } from './config/theme.js'
 import { PROFILE } from './config/profile.js'
 import { SITE, SOCIALS, COURSE, MENU } from './config/links.js'
 import CvPage from './CvPage.jsx'
 import PortfolioPage from './PortfolioPage.jsx'
+import NeoProfilePage from './NeoProfilePage.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -26,6 +27,7 @@ function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
+    document.documentElement.setAttribute('data-accent', ACCENT)
     localStorage.setItem(THEME_KEY, theme)
   }, [theme])
 
@@ -100,6 +102,10 @@ function App() {
 
   if (route === '#/portfolio') {
     return <PortfolioPage />
+  }
+
+  if (route === '#/neo') {
+    return <NeoProfilePage />
   }
 
   return (
