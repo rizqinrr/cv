@@ -45,17 +45,25 @@ function useIsMobile(breakpoint = MOBILE_BREAKPOINT) {
   return isMobile
 }
 
-function ProjectCard({ item }) {
+function ProjectCard({ item, index = 0, total = 6 }) {
+  const formattedIndex = (index + 1).toString().padStart(2, '0')
+  const formattedTotal = total.toString().padStart(2, '0')
+
   return (
-    <div
-      className="project-card"
-      style={{ backgroundColor: item.background, color: item.foreground ?? '#fff' }}
-    >
+    <div className="project-card">
       <div className="project-card-media">
         <img src={item.image} alt={item.imageAlt ?? item.label} loading="lazy" draggable={false} />
         <div className="project-card-media-overlay" />
+        <div className="project-card-index-badge">
+          {formattedIndex} / {formattedTotal}
+        </div>
       </div>
       <div className="project-card-text">
+        <div className="project-card-header">
+          <span className="project-card-eyebrow" style={{ color: item.background }}>
+            {item.eyebrow ?? 'Project'}
+          </span>
+        </div>
         <h2 className="project-card-title">{item.label}</h2>
         <p className="project-card-summary">{item.summary}</p>
         <div className="project-card-tech">
@@ -137,7 +145,7 @@ function FlipCard({ item, index, total, progress, reduceMotion }) {
           transformOrigin: '50% 100%',
         }}
       >
-        <ProjectCard item={item} />
+        <ProjectCard item={item} index={index} total={total} />
       </motion.div>
     </motion.article>
   )
@@ -440,7 +448,7 @@ function PortfolioPage() {
               transition={{ duration: reduceMotion ? 0 : CROSSFADE_DURATION }}
               className="project-panel-card"
             >
-              <ProjectCard item={selectedItem} />
+              <ProjectCard item={selectedItem} index={safeSelectedIndex} total={PROJECTS.length} />
             </motion.div>
           </AnimatePresence>
         </div>
