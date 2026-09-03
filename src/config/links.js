@@ -58,6 +58,11 @@ export const MENU = [
     href: '#/cyber',
   },
   {
+    label: 'Desain Profil Editorial Luxury (Demo)',
+    icon: 'auto_awesome',
+    href: '#/luxury',
+  },
+  {
     label: 'CV',
     icon: 'description',
     href: '#/cv',

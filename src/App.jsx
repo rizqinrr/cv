@@ -6,6 +6,7 @@ import CvPage from './CvPage.jsx'
 import PortfolioPage from './PortfolioPage.jsx'
 import NeoProfilePage from './NeoProfilePage.jsx'
 import CyberProfilePage from './CyberProfilePage.jsx'
+import { LuxuryProfilePage } from './LuxuryProfilePage.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -111,6 +112,10 @@ function App() {
 
   if (route === '#/cyber') {
     return <CyberProfilePage />
+  }
+
+  if (route === '#/luxury') {
+    return <LuxuryProfilePage />
   }
 
   return (
