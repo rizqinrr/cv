@@ -2,7 +2,6 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedin,
-  FaFacebook,
   FaBriefcase,
   FaWhatsapp,
   FaTelegram,
@@ -20,22 +19,17 @@ export const SOCIALS = [
   {
     label: 'GitHub',
     icon: FaGithub,
-    href: '#',
+    href: 'https://github.com/rizqinrr',
   },
   {
     label: 'Instagram',
     icon: FaInstagram,
-    href: '#',
+    href: 'https://www.instagram.com/rzqiinrr/',
   },
   {
     label: 'LinkedIn',
     icon: FaLinkedin,
-    href: '#',
-  },
-  {
-    label: 'Facebook',
-    icon: FaFacebook,
-    href: '#',
+    href: 'https://www.linkedin.com/in/riznv/',
   },
 ]
 
