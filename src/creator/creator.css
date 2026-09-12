@@ -1,0 +1,564 @@
+/* ─── CV Creator (halaman #/creator) ────────────────────── */
+/* Prefix .creator-* untuk UI, .ct-* untuk dokumen CV (export). */
+
+.creator-page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+.creator-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.creator-toolbar-left,
+.creator-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.creator-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  color: var(--on-surface);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.creator-back:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.creator-back .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.creator-save-status {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+}
+
+.creator-save-status.is-error {
+  color: #dc2626;
+}
+
+.creator-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.creator-download:hover:not(:disabled) {
+  background: var(--primary-deep);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-dock);
+}
+
+.creator-download:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.creator-download .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.creator-error {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.creator-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* ─── Form ──────────────────────────────────────────────── */
+.creator-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.creator-section {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.creator-section-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--on-surface);
+  transition: background 0.2s ease;
+}
+
+.creator-section-head:hover {
+  background: var(--primary-soft);
+}
+
+.creator-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.creator-section-chevron {
+  font-size: 22px;
+  color: var(--on-surface-variant);
+}
+
+.creator-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 4px 18px 18px;
+}
+
+.creator-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.creator-field-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.creator-input,
+.creator-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--on-surface);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.creator-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.creator-input:focus,
+.creator-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.creator-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed var(--glass-border);
+  background: var(--glass-bg);
+}
+
+.creator-item-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.creator-item-index {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+
+.creator-item-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.creator-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--glass-border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.creator-icon-btn .material-symbols-outlined {
+  font-size: 17px;
+}
+
+.creator-icon-btn:hover:not(:disabled) {
+  background: var(--primary-soft);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.creator-icon-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.creator-icon-btn-danger:hover:not(:disabled) {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.creator-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1px dashed var(--primary);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.creator-add-btn:hover {
+  background: var(--primary-soft);
+  transform: translateY(-1px);
+}
+
+.creator-add-btn .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.creator-empty-hint {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+}
+
+.creator-reset-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.creator-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1px solid #dc2626;
+  border-radius: 10px;
+  background: transparent;
+  color: #dc2626;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.creator-reset-btn:hover,
+.creator-reset-btn.is-confirming {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.creator-cancel-btn {
+  padding: 10px 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--on-surface-variant);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ─── Preview ───────────────────────────────────────────── */
+.creator-preview-pane {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.creator-preview-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.creator-preview-scroll {
+  max-height: calc(100vh - 140px);
+  overflow: auto;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: #e5e7eb;
+  box-shadow: inset 0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+.creator-preview-scaler {
+  width: 210mm;
+  transform-origin: top left;
+}
+
+/* ─── Dokumen CV (ATS) ──────────────────────────────────── */
+.ct-document {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 14mm 16mm;
+  background: #ffffff;
+  color: #111111;
+  font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.16);
+}
+
+.ct-header {
+  text-align: center;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1.5px solid #111111;
+}
+
+.ct-name {
+  font-size: 20pt;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: #111111;
+}
+
+.ct-role {
+  margin-top: 4px;
+  font-size: 11pt;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.ct-contact {
+  margin-top: 7px;
+  font-size: 9.5pt;
+  color: #3f3f46;
+}
+
+.ct-section {
+  margin-bottom: 13px;
+}
+
+.ct-heading {
+  font-size: 10.5pt;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111111;
+  padding-bottom: 3px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid #d4d4d8;
+}
+
+.ct-paragraph {
+  font-size: 10.5pt;
+  line-height: 1.55;
+  color: #27272a;
+  text-align: justify;
+}
+
+.ct-skill-row {
+  font-size: 10.5pt;
+  line-height: 1.55;
+  color: #27272a;
+  margin-bottom: 3px;
+}
+
+.ct-skill-category {
+  font-weight: 700;
+  color: #111111;
+}
+
+.ct-job,
+.ct-edu {
+  margin-bottom: 10px;
+}
+
+.ct-job:last-child,
+.ct-edu:last-child {
+  margin-bottom: 0;
+}
+
+.ct-job-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ct-job-title {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: #111111;
+}
+
+.ct-job-period {
+  flex-shrink: 0;
+  font-size: 9.5pt;
+  color: #52525b;
+  white-space: nowrap;
+}
+
+.ct-project-title {
+  margin-top: 2px;
+  font-size: 10pt;
+  font-style: italic;
+  color: #3f3f46;
+}
+
+.ct-edu-note {
+  margin-top: 2px;
+  font-size: 9.5pt;
+  color: #52525b;
+}
+
+.ct-bullets {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  list-style: disc;
+}
+
+.ct-bullets li {
+  font-size: 10pt;
+  line-height: 1.5;
+  color: #27272a;
+  margin-bottom: 2px;
+}
+
+/* ─── Print (fallback window.print) ─────────────────────── */
+@media print {
+  .creator-toolbar,
+  .creator-form,
+  .creator-preview-label,
+  .creator-error {
+    display: none !important;
+  }
+
+  .creator-layout {
+    display: block;
+  }
+
+  .creator-preview-scroll {
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .creator-preview-scaler {
+    transform: none !important;
+    width: auto;
+  }
+
+  .ct-document {
+    width: auto;
+    min-height: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .creator-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .creator-preview-pane {
+    position: static;
+  }
+
+  .creator-preview-scroll {
+    max-height: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .creator-preview-scaler {
+    transform: scale(0.42);
+  }
+
+  .creator-preview-scroll {
+    padding: 12px;
+  }
+}

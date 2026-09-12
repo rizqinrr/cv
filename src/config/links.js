@@ -104,6 +104,11 @@ export const MENU = [
     href: '#/cv',
   },
   {
+    label: 'Buat CV',
+    icon: 'edit_document',
+    href: '#/creator',
+  },
+  {
     label: 'Portfolio',
     icon: FaBriefcase,
     href: '#/portfolio',

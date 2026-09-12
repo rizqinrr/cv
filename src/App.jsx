@@ -3,6 +3,7 @@ import { THEME_KEY, ACCENT } from './config/theme.js'
 import { PROFILE } from './config/profile.js'
 import { SITE, SOCIALS, COURSE, MENU, TEMPLATES } from './config/links.js'
 import CvPage from './CvPage.jsx'
+import CreatorPage from './creator/CreatorPage.jsx'
 import PortfolioPage from './PortfolioPage.jsx'
 import NeoProfilePage from './templates/neo/NeoProfilePage.jsx'
 import CyberProfilePage from './templates/cyber/CyberProfilePage.jsx'
@@ -119,6 +120,10 @@ function App() {
 
   if (route === '#/cv') {
     return <CvPage />
+  }
+
+  if (route === '#/creator') {
+    return <CreatorPage />
   }
 
   if (route === '#/portfolio') {
