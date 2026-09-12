@@ -368,15 +368,15 @@
 }
 
 .creator-preview-scaler {
-  width: 210mm;
+  width: 190mm;
   transform-origin: top left;
 }
 
 /* ─── Dokumen CV (ATS) ──────────────────────────────────── */
 .ct-document {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 14mm 16mm;
+  width: 190mm;
+  min-height: 277mm;
+  padding: 12mm 14mm;
   background: #ffffff;
   color: #111111;
   font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
