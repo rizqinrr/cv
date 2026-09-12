@@ -634,6 +634,45 @@ body {
   font-size: 18px;
 }
 
+.community-section {
+  position: relative;
+  z-index: 1;
+  margin-top: 16px;
+}
+
+.community-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 6px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.community-header .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.community-list {
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.menu-row-button {
+  width: 100%;
+  font-family: inherit;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .course-card {
   position: relative;
   z-index: 1;
@@ -812,6 +851,150 @@ body {
   to {
     transform: scale(1);
   }
+}
+
+.gate-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: rgba(10, 15, 30, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: viewer-fade 0.2s ease;
+}
+
+.gate-card {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  padding: 32px 24px 24px;
+  text-align: center;
+  animation: viewer-zoom 0.25s ease;
+}
+
+.gate-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  color: var(--on-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.gate-close:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.gate-close .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.gate-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  border-radius: 20px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gate-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.gate-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 10px;
+}
+
+.gate-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+}
+
+.gate-hint {
+  font-size: 13.5px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 6px;
+}
+
+.gate-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.gate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.gate-btn:active {
+  transform: scale(0.98);
+}
+
+.gate-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.gate-btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: 1px solid var(--primary);
+}
+
+.gate-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.gate-btn-ghost {
+  background: transparent;
+  color: var(--on-surface-variant);
+  border: 1px solid var(--glass-border);
+}
+
+.gate-btn-ghost:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 
 .cv-page {

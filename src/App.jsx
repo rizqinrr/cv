@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { THEME_KEY, ACCENT } from './config/theme.js'
 import { PROFILE } from './config/profile.js'
-import { SITE, SOCIALS, COURSE, MENU, TEMPLATES } from './config/links.js'
+import { FaWhatsapp } from 'react-icons/fa'
+import { SITE, SOCIALS, COURSE, MENU, TEMPLATES, COMMUNITY, WHATSAPP_GROUP } from './config/links.js'
 import CvPage from './CvPage.jsx'
 import CreatorPage from './creator/CreatorPage.jsx'
 import PortfolioPage from './PortfolioPage.jsx'
@@ -23,12 +24,14 @@ function App() {
   const [viewer, setViewer] = useState(null)
   const [route, setRoute] = useState(() => window.location.hash)
   const [showTemplates, setShowTemplates] = useState(false)
+  const [gate, setGate] = useState(null)
 
   useEffect(() => {
     const onHashChange = () => {
       setRoute(window.location.hash)
       setViewer(null)
       setShowTemplates(false)
+      setGate(null)
       window.scrollTo(0, 0)
     }
     window.addEventListener('hashchange', onHashChange)
@@ -78,6 +81,19 @@ function App() {
       window.removeEventListener('click', onClickOutside)
     }
   }, [showTemplates])
+
+  useEffect(() => {
+    if (!gate) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setGate(null)
+    }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [gate])
 
   const playDarkSound = () => {
     const audio = new Audio('sounds/faaah.mp3')
@@ -269,7 +285,14 @@ function App() {
 
       <nav className="menu">
         {MENU.map((row) => (
-          <a key={row.label} className="menu-row" href={row.href}>
+          <a
+            key={row.label}
+            className="menu-row"
+            href={row.href}
+            {...(row.external
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
+          >
             <div className="menu-icon-box">
               {typeof row.icon === 'string' ? (
                 <span className="material-symbols-outlined">{row.icon}</span>
@@ -279,11 +302,64 @@ function App() {
             </div>
             <span className="menu-label">{row.label}</span>
             <div className="menu-chevron">
-              <span className="material-symbols-outlined">chevron_right</span>
+              <span className="material-symbols-outlined">
+                {row.external ? 'open_in_new' : 'chevron_right'}
+              </span>
             </div>
           </a>
         ))}
       </nav>
+
+      <section className="community-section">
+        <div className="community-header">
+          <span className="material-symbols-outlined">{COMMUNITY.icon}</span>
+          <span className="community-title">{COMMUNITY.label}</span>
+        </div>
+
+        <div className="community-list">
+          {COMMUNITY.items.map((item) => {
+            const Icon = item.icon
+            const content = (
+              <>
+                <div className="menu-icon-box">
+                  <Icon />
+                </div>
+                <span className="menu-label">{item.label}</span>
+                <div className="menu-chevron">
+                  <span className="material-symbols-outlined">
+                    {item.action === 'open' ? 'open_in_new' : 'chevron_right'}
+                  </span>
+                </div>
+              </>
+            )
+
+            if (item.action === 'open') {
+              return (
+                <a
+                  key={item.id}
+                  className="menu-row"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {content}
+                </a>
+              )
+            }
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                className="menu-row menu-row-button"
+                onClick={() => setGate(item.id)}
+              >
+                {content}
+              </button>
+            )
+          })}
+        </div>
+      </section>
 
       <div className="social-card">
         <div className="social-row">
@@ -329,6 +405,58 @@ function App() {
           />
         </div>
       )}
+
+      {gate && (() => {
+        const item = COMMUNITY.items.find((entry) => entry.id === gate)
+        if (!item) return null
+        return (
+          <div className="gate-backdrop" onClick={() => setGate(null)}>
+            <div
+              className="gate-card"
+              role="dialog"
+              aria-modal="true"
+              aria-label={item.title}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="gate-close"
+                onClick={() => setGate(null)}
+                aria-label="Tutup"
+              >
+                <span className="material-symbols-outlined">close</span>
+              </button>
+
+              <div className="gate-icon">
+                <item.icon />
+              </div>
+
+              <h3 className="gate-title">{item.title}</h3>
+              <p className="gate-text">{item.message}</p>
+              <p className="gate-hint">Join Grup WhatsApp dulu ya.</p>
+
+              <div className="gate-actions">
+                <a
+                  className="gate-btn gate-btn-primary"
+                  href={WHATSAPP_GROUP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setGate(null)}
+                >
+                  <FaWhatsapp />
+                  Join Grup WhatsApp
+                </a>
+                <button
+                  type="button"
+                  className="gate-btn gate-btn-ghost"
+                  onClick={() => setGate(null)}
+                >
+                  Batal
+                </button>
+              </div>
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }
