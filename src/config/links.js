@@ -114,13 +114,18 @@ export const MENU = [
     href: 'https://rizqinrr.github.io/portofolio/',
     external: true,
   },
+  {
+    label: 'Komunitas',
+    icon: 'forum',
+    href: '#/komunitas',
+  },
 ]
 
 export const WHATSAPP_GROUP = 'https://chat.whatsapp.com/LUw1SErvcJC4WeLiVO17OM'
 
 export const COMMUNITY = {
-  label: 'Komunitas',
-  icon: 'forum',
+  title: 'Komunitas',
+  subtitle: 'Gabung dan ngobrol bareng di Ngomongin AI',
   items: [
     {
       id: 'wa-group',
