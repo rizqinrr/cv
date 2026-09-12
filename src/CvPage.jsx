@@ -17,11 +17,10 @@ function CvPage() {
       <article className="cv-document">
         <header className="cv-header">
           <h1 className="serif">{CV.name}</h1>
-          <p className="cv-role">{CV.role}</p>
           <p className="cv-contact">
             {[
-              CV.contact.email,
               CV.contact.phone,
+              CV.contact.email,
               CV.contact.location,
               CV.contact.website,
             ]
@@ -31,19 +30,33 @@ function CvPage() {
         </header>
 
         <section className="cv-section">
-          <h2>Summary</h2>
+          <h2>PROFIL</h2>
           <p>{CV.summary}</p>
         </section>
 
+        {CV.skillGroups && CV.skillGroups.length > 0 && (
+          <section className="cv-section">
+            <h2>KETERAMPILAN</h2>
+            <div className="cv-skills-list">
+              {CV.skillGroups.map((group) => (
+                <p key={group.category} className="cv-skill-item">
+                  <strong>{group.category}:</strong> {group.items}
+                </p>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="cv-section">
-          <h2>Experience</h2>
+          <h2>PENGALAMAN</h2>
           {CV.experience.map((job) => (
-            <div className="cv-job" key={job.company}>
+            <div className="cv-job" key={job.role + job.company}>
               <div className="cv-job-head">
-                <span className="cv-job-role">{job.role}</span>
+                <span className="cv-job-role">
+                  {job.role} <span className="cv-job-divider">|</span> {job.company}
+                </span>
                 <span className="cv-job-period">{job.period}</span>
               </div>
-              <div className="cv-job-company">{job.company}</div>
               <ul className="cv-job-bullets">
                 {job.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
@@ -53,37 +66,42 @@ function CvPage() {
           ))}
         </section>
 
+        {CV.academicProjects && CV.academicProjects.length > 0 && (
+          <section className="cv-section">
+            <h2>PROYEK AKADEMIK</h2>
+            {CV.academicProjects.map((proj) => (
+              <div className="cv-job" key={proj.title}>
+                <div className="cv-job-head">
+                  <span className="cv-job-role">
+                    {proj.role} <span className="cv-job-divider">|</span> {proj.institution}
+                  </span>
+                  <span className="cv-job-period">{proj.period}</span>
+                </div>
+                <div className="cv-project-title">{proj.title}</div>
+                <ul className="cv-job-bullets">
+                  {proj.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        )}
+
         <section className="cv-section">
-          <h2>Education</h2>
+          <h2>PENDIDIKAN</h2>
           {CV.education.map((edu) => (
             <div className="cv-edu" key={edu.school}>
               <div className="cv-edu-head">
-                <span className="cv-edu-degree">{edu.degree}</span>
+                <span className="cv-edu-degree">
+                  {edu.degree} <span className="cv-job-divider">|</span> {edu.school}
+                </span>
                 <span className="cv-edu-period">{edu.period}</span>
               </div>
-              <div className="cv-edu-school">{edu.school}</div>
+              {edu.note && <div className="cv-edu-note">{edu.note}</div>}
             </div>
           ))}
         </section>
-
-        <section className="cv-section">
-          <h2>Skills</h2>
-          <p>{CV.skills.join(', ')}</p>
-        </section>
-
-        {CV.certifications.length > 0 && (
-          <section className="cv-section">
-            <h2>Certifications</h2>
-            <p>{CV.certifications.join(', ')}</p>
-          </section>
-        )}
-
-        {CV.languages.length > 0 && (
-          <section className="cv-section">
-            <h2>Languages</h2>
-            <p>{CV.languages.join(', ')}</p>
-          </section>
-        )}
       </article>
     </div>
   )

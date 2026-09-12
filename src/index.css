@@ -901,6 +901,7 @@ body {
 }
 
 .cv-header {
+  text-align: center;
   border-bottom: 2px solid var(--outline-variant);
   padding-bottom: 18px;
   margin-bottom: 24px;
@@ -946,6 +947,43 @@ body {
   font-size: 14px;
   line-height: 1.7;
   color: var(--on-surface);
+}
+
+.cv-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cv-skill-item {
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+}
+
+.cv-skill-item strong {
+  color: var(--on-surface);
+  font-weight: 700;
+}
+
+.cv-job-divider {
+  color: var(--outline);
+  margin: 0 4px;
+  font-weight: 400;
+}
+
+.cv-project-title {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--on-surface-variant);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+.cv-edu-note {
+  font-size: 13px;
+  color: var(--on-surface-variant);
+  margin-top: 3px;
+  font-style: italic;
 }
 
 .cv-job,
